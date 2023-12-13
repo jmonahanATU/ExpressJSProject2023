@@ -1,9 +1,14 @@
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const mysql = require('mysql');
+const path = require('path');  // Add this line
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+ 
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -38,15 +43,8 @@ process.on('SIGINT', () => {
   process.exit();
 });
 
-// Mock data for demonstration purposes
-const mockStores = [
-    { id: 1, name: 'Store A', location: 'Location A' },
-    { id: 2, name: 'Store B', location: 'Location B' },
-    // Add more store data as needed
-  ];
-
 // Routes
-const storesRouter = require('./routes/stores')(mysqlPool);
+const storesRouter = require('./routes/storesRoute')(mysqlPool);
 const productsRouter = require('./routes/products')(mysqlPool);
 const managersRouter = require('./routes/managers')(mongoClient);
 const productStoreRouter = require('./routes/productStore')(mysqlPool);
@@ -56,6 +54,19 @@ app.use('/stores', storesRouter);
 app.use('/products', productsRouter);
 app.use('/managers', managersRouter);
 app.use('/product_store', productStoreRouter);
+
+// Routes
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>Home Page</h1>
+    <ul>
+      <li><a href="/stores">Stores</a></li>
+      <li><a href="/products">Products</a></li>
+      <li><a href="/product_store">Product Store</a></li> 
+      <li><a href="/managers">Managers (MongoDB)</a></li>
+    </ul>
+  `);
+});
 
 // Start the server
 app.listen(port, () => {

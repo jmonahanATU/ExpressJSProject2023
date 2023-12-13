@@ -1,0 +1,11 @@
+<!-- views/stores.ejs -->
+<h1>Stores List</h1>
+<ul>
+  <% stores.forEach(store => { %>
+    <li>
+      <strong>Store ID:</strong> <%= store.sid %><br>
+      <strong>Location:</strong> <%= store.location %><br>
+      <strong>Manager ID:</strong> <%= store.mgrid %>
+    </li>
+  <% }); %>
+</ul>
