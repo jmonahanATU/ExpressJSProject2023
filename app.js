@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const { MongoClient } = require('mongodb');
 const mysql = require('mysql');
 
@@ -7,8 +6,8 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middlewares
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // MongoDB connection setup
 const mongoURI = 'mongodb://localhost:27017/proj2023MongoDB';
@@ -38,6 +37,39 @@ process.on('SIGINT', () => {
   mongoClient.close();
   process.exit();
 });
+
+// Mock data for demonstration purposes
+const mockStores = [
+    { id: 1, name: 'Store A', location: 'Location A' },
+    { id: 2, name: 'Store B', location: 'Location B' },
+    // Add more store data as needed
+  ];
+// Routes
+app.get('/', (req, res) => {
+    res.send(`
+      <h1>Home Page</h1>
+      <ul>
+        <li><a href="/stores">Stores</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/managers">Managers (MongoDB)</a></li>
+      </ul>
+    `);
+  });
+
+  app.get('/stores', (req, res) => {
+    // Render the Stores page with details of all stores
+    res.send(`
+      <h1>Stores Page</h1>
+      <ul>
+        ${mockStores.map(store => `
+          <li>
+            ${store.name} - ${store.location}
+            | <a href="/stores/update/${store.id}">Update</a>
+          </li>`).join('')}
+      </ul>
+      <p><a href="/stores/add">Add Store</a></p>
+    `);
+  });
 
 // Routes
 const storesRouter = require('./routes/stores')(mysqlPool);
