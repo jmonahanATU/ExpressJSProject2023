@@ -11,7 +11,7 @@ app.use(express.json());
 
 // MongoDB connection setup
 const mongoURI = 'mongodb://localhost:27017/proj2023MongoDB';
-const mongoClient = new MongoClient(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoClient = new MongoClient(mongoURI);
 
 // MySQL connection pool setup
 const mysqlPool = mysql.createPool({
