@@ -5,19 +5,23 @@ module.exports = (mongoClient) => {
   router.get('/', async (req, res) => {
     try {
       const managers = await getManagers(mongoClient);
-      res.json(managers);
+      res.render('managers', { managers }); // Assuming your EJS file is named "managers.ejs"
     } catch (error) {
       console.error('Error retrieving managers from MongoDB:', error);
       res.status(500).send('Internal Server Error');
     }
   });
 
-  return router;
-};
+  const getManagers = async (mongoClient) => {
+    try {
+      const db = mongoClient.db('proj2023MongoDB');
+      const collection = db.collection('managers');
+      const managers = await collection.find().toArray();
+      return managers;
+    } catch (error) {
+      throw error;
+    }
+  };
 
-const getManagers = async (mongoClient) => {
-  const db = mongoClient.db('proj2023MongoDB');
-  const collection = db.collection('managers');
-  const managers = await collection.find().toArray();
-  return managers;
+  return router;
 };

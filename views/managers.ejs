@@ -5,17 +5,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Managers (MongoDB) Page</title>
+    <title>Managers Page</title>
+
+    <style>
+        table {
+            border: double;
+            width: 30%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-    <h1>Managers (MongoDB) Page</h1>
-    <ul>
+    <h1>Managers Page</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <!-- Add more table headers as needed -->
+        </tr>
         <% managers.forEach(manager => { %>
-            <li>
-                <%= manager.name %> - <%= manager.salary %>
-            </li>
+            <tr>
+                <td><%= manager.name %></td>
+                <td><%= manager.position %></td>
+                <!-- Add more table cells as needed -->
+            </tr>
         <% }); %>
-    </ul>
-    <p><a href="/">Back to Home</a></p>
+    </table>
 </body>
 </html>

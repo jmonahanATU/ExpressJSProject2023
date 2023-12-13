@@ -19,7 +19,7 @@ module.exports = (mysqlPool) => {
         console.error('Error retrieving product_store from MySQL:', error);
         res.status(500).send('Internal Server Error');
       } else {
-        res.render('products', { productStore: results });
+        res.render('product_store_page', { productStore: results });
       }
     });
   });
