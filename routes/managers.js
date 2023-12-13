@@ -28,6 +28,7 @@ const getManagers = () => {
   });
 };
 
+
 // Route to retrieve and display managers from MongoDB using async/await
 router.get('/', async (req, res) => {
   try {
