@@ -28,17 +28,20 @@
     <h1>Managers Page</h1>
     <table>
         <tr>
+            <th>ID</th>
             <th>Name</th>
-            <th>Position</th>
+            <th>Salary</th>
             <!-- Add more table headers as needed -->
         </tr>
         <% managers.forEach(manager => { %>
             <tr>
+                <td><%= manager._id %></td>
                 <td><%= manager.name %></td>
-                <td><%= manager.position %></td>
+                <td><%= manager.salary %></td>
                 <!-- Add more table cells as needed -->
             </tr>
         <% }); %>
     </table>
+    <p><a href="/">Back to Home</a></p>
 </body>
 </html>

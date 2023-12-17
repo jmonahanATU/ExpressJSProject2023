@@ -6,12 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Store Page</title>
-    
 
     <style>
         table {
             border: double;
-            width: 30%;
+            width: 50%;
         }
 
         th, td {
@@ -25,7 +24,6 @@
         }
     </style>
 </head>
-
 
 <body>
     <h1>Product Store Page</h1>
@@ -42,7 +40,7 @@
                 <tr>
                     <td><%= product.pid %></td>
                     <td><%= product.sid %></td>
-                    <td><%= product.price %></td>
+                    <td><%= product.Price %></td> 
                 </tr>
             <% }); %>
         </tbody>

@@ -10,7 +10,7 @@
     <style>
         table {
             border: double;
-            width: 30%;
+            width: 50%;
         }
 
         th, td {
@@ -26,14 +26,22 @@
 </head>
 <body>
     <h1>Products Page</h1>
-    <ul>
+    <table>
+        <tr>
+            <th>Product ID</th>
+            <th>Product Description</th>
+            <th>Supplier</th>
+            <!-- Add more table headers as needed -->
+        </tr>
         <% products.forEach(product => { %>
-            <li>
-                <%= product.productdesc %> - <%= product.price %>
-                | <a href="/products/delete/<%= product.pid %>">Delete</a>
-            </li>
+            <tr>
+                <td><%= product.pid %></td>
+                <td><%= product.productdesc %></td>
+                <td><%= product.supplier %></td>
+                <!-- Add more table cells as needed -->
+            </tr>
         <% }); %>
-    </ul>
+    </table>
     <p><a href="/">Back to Home</a></p>
 </body>
 </html>

@@ -1,11 +1,47 @@
 <!-- views/stores.ejs -->
-<h1>Stores List</h1>
-<ul>
-  <% stores.forEach(store => { %>
-    <li>
-      <strong>Store ID:</strong> <%= store.sid %><br>
-      <strong>Location:</strong> <%= store.location %><br>
-      <strong>Manager ID:</strong> <%= store.mgrid %>
-    </li>
-  <% }); %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stores Page</title>
+
+    <style>
+        table {
+            border: double;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stores Page</h1>
+    <table>
+        <tr>
+            <th>Store ID</th>
+            <th>Location</th>
+            <th>Manager ID</th>
+            <!-- Add more table headers as needed -->
+        </tr>
+        <% stores.forEach(store => { %>
+            <tr>
+                <td><%= store.sid %></td>
+                <td><%= store.location %></td>
+                <td><%= store.mgrid %></td>
+                <!-- Add more table cells as needed -->
+            </tr>
+        <% }); %>
+    </table>
+    <p><a href="/">Back to Home</a></p>
+</body>
+</html>
