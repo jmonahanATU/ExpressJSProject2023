@@ -1,4 +1,3 @@
-<!-- views/stores.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,22 +25,26 @@
 </head>
 <body>
     <h1>Stores Page</h1>
+    <p><a href="/stores/add">Add Store</a></p>
     <table>
-        <tr>
-            <th>Store ID</th>
-            <th>Location</th>
-            <th>Manager ID</th>
-            <!-- Add more table headers as needed -->
-        </tr>
-        <% stores.forEach(store => { %>
-            <tr>
-                <td><%= store.sid %></td>
-                <td><%= store.location %></td>
-                <td><%= store.mgrid %></td>
-                <!-- Add more table cells as needed -->
-            </tr>
-        <% }); %>
-    </table>
+      <tr>
+          <th>Store ID</th>
+          <th>Location</th>
+          <th>Manager ID</th>
+          <th>Actions</th> <!-- Add a new column for actions -->
+      </tr>
+      <% stores.forEach(store => { %>
+          <tr>
+              <td><%= store.sid %></td>
+              <td><%= store.location %></td>
+              <td><%= store.mgrid %></td>
+              <td>
+                  <a href="/stores/edit/<%= store.sid %>">Edit</a>
+                  <!-- Add more action links/buttons as needed -->
+              </td>
+          </tr>
+      <% }); %>
+  </table>  
     <p><a href="/">Back to Home</a></p>
 </body>
 </html>

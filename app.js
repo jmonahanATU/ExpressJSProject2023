@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
  
 
 // Middlewares
@@ -20,7 +20,7 @@ const mongoClient = new MongoClient(mongoURI);
 
 // MySQL connection pool setup
 const mysqlPool = mysql.createPool({
-  connectionLimit: 10,
+  connectionLimit: 15,
   host: 'localhost',
   user: 'root',
   password: 'root',
@@ -44,7 +44,7 @@ process.on('SIGINT', () => {
 });
 
 // Routes
-const storesRouter = require('./routes/storesRoute')(mysqlPool);
+const storesRouter = require('./routes/storesRoute')(mysqlPool, mongoClient);
 const productsRouter = require('./routes/products')(mysqlPool);
 const managersRouter = require('./routes/managers')(mongoClient);
 const productStoreRouter = require('./routes/productStore')(mysqlPool);

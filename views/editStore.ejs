@@ -1,0 +1,44 @@
+<!-- views/editStore.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Store</h1>
+    <form action="/stores/edit/<%= store.sid %>" method="post">
+        <label for="sid">Store ID:</label>
+        <input type="text" id="sid" name="sid" value="<%= store.sid %>" required readonly>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" value="<%= store.location %>" required>
+
+        <label for="mgrid">Manager ID:</label>
+        <input type="text" id="mgrid" name="mgrid" value="<%= store.mgrid %>" required>
+
+        <button type="submit">Save Changes</button>
+    </form>
+    <p><a href="/stores">Back to Stores</a></p>
+</body>
+</html>
